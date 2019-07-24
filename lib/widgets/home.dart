@@ -1,4 +1,6 @@
+import 'package:flutter_rss_reader/models/parser.dart';
 import 'package:flutter/material.dart';
+import 'package:webfeed/webfeed.dart';
 
 class Home extends StatefulWidget {
   Home({Key key, this.title}) : super(key: key);
@@ -11,7 +13,14 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  final String url = 'https://news.google.com/rss?hl=fr&gl=FR&ceid=FR:fr';
+  RssFeed feed;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    parse();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,4 +33,21 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+
+  Future parse() async{
+    RssFeed result = await Parser().loadRss();
+    if(result != null){
+      setState(() {
+        feed = result;
+        feed.items.forEach((f){
+          print('Title: ${f.title}');
+        });
+        print('La longueur: ${feed.items.length}');
+      });
+    }
+    else{
+      print('It null!');
+    }
+  }
+
 }
