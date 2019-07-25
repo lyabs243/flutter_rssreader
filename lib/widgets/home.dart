@@ -1,4 +1,4 @@
-import 'package:flutter_rss_reader/models/parser.dart';
+import 'package:flutter_rss_reader/models/feed_parser.dart';
 import 'package:flutter/material.dart';
 import 'package:webfeed/webfeed.dart';
 import 'package:flutter_rss_reader/widgets/item_feed.dart';
@@ -39,7 +39,7 @@ class _HomeState extends State<Home> {
   }
 
   Future parse() async{
-    RssFeed result = await Parser().loadRss();
+    RssFeed result = await FeedParser().loadRss();
     feeds = [];
     if(result != null){
       setState(() {

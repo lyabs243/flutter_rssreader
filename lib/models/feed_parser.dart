@@ -2,7 +2,7 @@ import 'package:webfeed/webfeed.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
 
-class Parser{
+class FeedParser{
 
   final String url = 'https://news.google.com/rss?hl=fr&gl=FR&ceid=FR:fr';
 
