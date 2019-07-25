@@ -12,10 +12,10 @@ class ItemFeed{
           children: <Widget>[
             new Container(
               decoration: new BoxDecoration(
-                color: const Color(0xff7c94b6),
+                color: /*const Color(0xff7c94b6)*/Colors.black,
                 borderRadius: BorderRadius.circular(5),
                 image: new DecorationImage(
-                  colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.5), BlendMode.dstATop),
+                  colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.dstATop),
                   image: new NetworkImage(itemFeed.articleUurlImage),
                   fit: BoxFit.cover,
                 ),
@@ -23,8 +23,8 @@ class ItemFeed{
               alignment: Alignment.bottomLeft,
               child: new Text(
                 itemFeed.articleTitle,
-                maxLines: 1,
-                textScaleFactor: 2.0,
+                maxLines: 2,
+                textScaleFactor: 1.3,
                 style: new TextStyle(
                   color: Colors.white,
                 ),
@@ -38,17 +38,21 @@ class ItemFeed{
               child: new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  new Text(
-                    itemFeed.channelTitle,
-                    style: new TextStyle(
-                      color: Colors.white,
+                  new Container(
+                    child: new Text(
+                      itemFeed.channelTitle,
+                      style: new TextStyle(
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                  new Text(
-                    itemFeed.articlePubDate,
-                    style: new TextStyle(
-                      color: Colors.white,
-                      fontStyle: FontStyle.italic,
+                  new Container(
+                    child: new Text(
+                      itemFeed.articlePubDate.substring(0,15),
+                      style: new TextStyle(
+                        color: Colors.white,
+                        fontStyle: FontStyle.italic,
+                      ),
                     ),
                   ),
                 ],
