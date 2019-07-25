@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:webfeed/webfeed.dart';
 import 'package:flutter_rss_reader/widgets/item_feed.dart';
 import 'package:flutter_rss_reader/widgets/feed_detail.dart';
+import 'package:flutter_rss_reader/models/feed.dart';
 
 class Home extends StatefulWidget {
   Home({Key key, this.title}) : super(key: key);
@@ -16,6 +17,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 
   RssFeed feed;
+  List<Feed> feeds;
 
   @override
   void initState() {
@@ -38,13 +40,25 @@ class _HomeState extends State<Home> {
 
   Future parse() async{
     RssFeed result = await Parser().loadRss();
+    feeds = [];
     if(result != null){
       setState(() {
         feed = result;
         feed.items.forEach((f){
-          print('Title: ${f.title}');
+          String title = feed.title;
+          String aTitle = f.title;
+          String aDesc = f.description;
+          String pubDate = f.pubDate;
+          String uArticle = f.link;
+          String uImg = '';
+
+          f.media.contents.forEach((content){
+            uImg = content.url;
+          });
+
+          Feed item = new Feed(title, aTitle, aDesc, pubDate, uImg, uArticle);
+          feeds.add(item);
         });
-        print('La longueur: ${feed.items.length}');
       });
     }
     else{
@@ -54,7 +68,7 @@ class _HomeState extends State<Home> {
 
   Widget listView(){
     return new ListView.builder(
-      itemCount: 10,
+      itemCount: (feeds != null)? feeds.length : 0,
       itemBuilder: (context,i){
         return new InkWell(
           onTap: (){
@@ -67,7 +81,7 @@ class _HomeState extends State<Home> {
               ),
             );
           },
-          child: new ItemFeed().createElement(context),
+          child: new ItemFeed().createElement(context,feeds[i]),
         );
       },
     );

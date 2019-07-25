@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rss_reader/models/feed.dart';
 
 class ItemFeed{
 
-  Widget createElement(BuildContext context) {
+  Widget createElement(BuildContext context,Feed itemFeed) {
     return new Card(
       elevation: 30.0,
       child: new Container(
@@ -15,13 +16,13 @@ class ItemFeed{
                 borderRadius: BorderRadius.circular(5),
                 image: new DecorationImage(
                   colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.5), BlendMode.dstATop),
-                  image: new NetworkImage('https://qph.fs.quoracdn.net/main-thumb-518957970-200-zezcbywnwoaoabaebktrzirciamthdwu.jpeg'),
+                  image: new NetworkImage(itemFeed.articleUurlImage),
                   fit: BoxFit.cover,
                 ),
               ),
               alignment: Alignment.bottomLeft,
               child: new Text(
-                'Salut les amis ca va?',
+                itemFeed.articleTitle,
                 maxLines: 1,
                 textScaleFactor: 2.0,
                 style: new TextStyle(
@@ -38,13 +39,13 @@ class ItemFeed{
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   new Text(
-                    'France 24',
+                    itemFeed.channelTitle,
                     style: new TextStyle(
                       color: Colors.white,
                     ),
                   ),
                   new Text(
-                    'Il y a 5 minutes',
+                    itemFeed.articlePubDate,
                     style: new TextStyle(
                       color: Colors.white,
                       fontStyle: FontStyle.italic,
@@ -55,8 +56,7 @@ class ItemFeed{
             ),
             new Container(
               child: new Text(
-                'c un plaisir partage que nous sommes ici ave vous ca faisait vraiment longtemps'
-                    'c un plaisir partage que nous sommes ici ave vous ca faisait vraiment longtemps',
+                itemFeed.articleDescription,
                 maxLines: 2,
                 textScaleFactor: 1.5,
               ),
