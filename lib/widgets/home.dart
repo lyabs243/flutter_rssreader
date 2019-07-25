@@ -77,7 +77,7 @@ class _HomeState extends State<Home> {
               context,
               new MaterialPageRoute(
                   builder: (BuildContext context){
-                    return new FeedDetail();
+                    return new FeedDetail(feeds[i]);
                   }
               ),
             );

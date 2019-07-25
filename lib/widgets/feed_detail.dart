@@ -1,16 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rss_reader/models/feed.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:html/dom.dart' as dom;
 
 class FeedDetail extends StatefulWidget{
+
+  Feed feed;
+
+  FeedDetail(Feed f){
+    this.feed = f;
+  }
 
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return new _FeedDetail();
+    return new _FeedDetail(feed);
   }
 
 }
 
 class _FeedDetail extends State<FeedDetail>{
+
+  Feed feed;
+
+  _FeedDetail(Feed f){
+    this.feed = f;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +41,7 @@ class _FeedDetail extends State<FeedDetail>{
                     width: MediaQuery.of(context).size.width/1,
                     height: MediaQuery.of(context).size.height/2,
                     child: new Image.network(
-                      'https://qph.fs.quoracdn.net/main-thumb-518957970-200-zezcbywnwoaoabaebktrzirciamthdwu.jpeg',
+                      feed.articleUurlImage,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -41,13 +56,13 @@ class _FeedDetail extends State<FeedDetail>{
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               new Text(
-                                'France 24',
+                                feed.channelTitle,
                                 style: new TextStyle(
                                   color: Colors.white,
                                 ),
                               ),
                               new Text(
-                                'Il y a 5 minutes',
+                                feed.articlePubDate,
                                 style: new TextStyle(
                                   color: Colors.white,
                                   fontStyle: FontStyle.italic,
@@ -59,16 +74,14 @@ class _FeedDetail extends State<FeedDetail>{
                         new Padding(padding: EdgeInsets.only(top: 10.0)),
                         new Container(
                           child: new Text(
-                            'Salut les amis ca va?',
+                            feed.articleTitle,
                             textScaleFactor: 2.0,
                           ),
                         ),
                         new Padding(padding: EdgeInsets.only(top: 10.0)),
                         new Container(
-                          child: new Text(
-                            'Salut les amis ca va?''c un plaisir partage que nous sommes ici ave vous ca faisait vraiment longtemps'
-                                'c un plaisir partage que nous sommes ici ave vous ca faisait vraiment longtemps',
-                            textScaleFactor: 1.3,
+                          child: Html(
+                            data: feed.articleDescription,
                           ),
                         ),
                         new Padding(padding: EdgeInsets.only(top: 10.0)),
