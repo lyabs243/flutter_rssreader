@@ -2,6 +2,7 @@ import 'package:flutter_rss_reader/models/parser.dart';
 import 'package:flutter/material.dart';
 import 'package:webfeed/webfeed.dart';
 import 'package:flutter_rss_reader/widgets/item_feed.dart';
+import 'package:flutter_rss_reader/widgets/feed_detail.dart';
 
 class Home extends StatefulWidget {
   Home({Key key, this.title}) : super(key: key);
@@ -57,7 +58,14 @@ class _HomeState extends State<Home> {
       itemBuilder: (context,i){
         return new InkWell(
           onTap: (){
-            print('Tap IT!');
+            Navigator.push(
+              context,
+              new MaterialPageRoute(
+                  builder: (BuildContext context){
+                    return new FeedDetail();
+                  }
+              ),
+            );
           },
           child: new ItemFeed().createElement(context),
         );
