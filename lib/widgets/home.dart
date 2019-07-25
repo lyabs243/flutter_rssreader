@@ -45,7 +45,7 @@ class _HomeState extends State<Home> {
       setState(() {
         feed = result;
         feed.items.forEach((f){
-          String title = feed.title;
+          String title = f.source.value;
           String aTitle = f.title;
           String aDesc = f.description;
           String pubDate = f.pubDate;
