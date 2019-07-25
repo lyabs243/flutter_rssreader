@@ -1,6 +1,7 @@
 import 'package:flutter_rss_reader/models/parser.dart';
 import 'package:flutter/material.dart';
 import 'package:webfeed/webfeed.dart';
+import 'package:flutter_rss_reader/widgets/item_feed.dart';
 
 class Home extends StatefulWidget {
   Home({Key key, this.title}) : super(key: key);
@@ -29,7 +30,7 @@ class _HomeState extends State<Home> {
         title: Text(widget.title),
       ),
       body: Center(
-
+        child: listView(),
       ),
     );
   }
@@ -48,6 +49,20 @@ class _HomeState extends State<Home> {
     else{
       print('It null!');
     }
+  }
+
+  Widget listView(){
+    return new ListView.builder(
+      itemCount: 10,
+      itemBuilder: (context,i){
+        return new InkWell(
+          onTap: (){
+            print('Tap IT!');
+          },
+          child: new ItemFeed().createElement(context),
+        );
+      },
+    );
   }
 
 }
