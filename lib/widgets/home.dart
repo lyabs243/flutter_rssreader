@@ -4,6 +4,7 @@ import 'package:webfeed/webfeed.dart';
 import 'package:flutter_rss_reader/widgets/item_feed.dart';
 import 'package:flutter_rss_reader/widgets/feed_detail.dart';
 import 'package:flutter_rss_reader/models/feed.dart';
+import 'package:html/parser.dart';
 
 class Home extends StatefulWidget {
   Home({Key key, this.title}) : super(key: key);
@@ -86,5 +87,4 @@ class _HomeState extends State<Home> {
       },
     );
   }
-
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rss_reader/models/feed.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:html/dom.dart' as dom;
 
 class ItemFeed{
 
@@ -59,10 +61,8 @@ class ItemFeed{
               ),
             ),
             new Container(
-              child: new Text(
-                itemFeed.articleDescription,
-                maxLines: 2,
-                textScaleFactor: 1.5,
+              child: Html(
+                data: itemFeed.articleDescription,
               ),
             ),
           ],
