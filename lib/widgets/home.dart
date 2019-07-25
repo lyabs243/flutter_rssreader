@@ -50,7 +50,7 @@ class _HomeState extends State<Home> {
           String aDesc = f.description;
           String pubDate = f.pubDate;
           String uArticle = f.link;
-          String uImg = '';
+          String uImg = 'https://q5v8e3s3.stackpathcdn.com/wp-content/uploads/2019/04/news-default-image-300x225.jpg';
 
           f.media.contents.forEach((content){
             uImg = content.url;
