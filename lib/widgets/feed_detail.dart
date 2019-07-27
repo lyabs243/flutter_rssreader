@@ -62,7 +62,7 @@ class _FeedDetail extends State<FeedDetail>{
                                 ),
                               ),
                               new Text(
-                                feed.articlePubDate,
+                                feed.convertDateToAbout(),
                                 style: new TextStyle(
                                   color: Colors.white,
                                   fontStyle: FontStyle.italic,

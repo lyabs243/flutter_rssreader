@@ -50,7 +50,7 @@ class ItemFeed{
                   ),
                   new Container(
                     child: new Text(
-                      itemFeed.articlePubDate.substring(0,15),
+                      itemFeed.convertDateToAbout(),
                       style: new TextStyle(
                         color: Colors.white,
                         fontStyle: FontStyle.italic,
