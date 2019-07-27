@@ -34,7 +34,21 @@ class _HomeState extends State<Home> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: listView(),
+        child: (feeds == null)?
+          new Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              new CircularProgressIndicator(
+
+              ),
+              new Text(
+                'Loading...',
+                textScaleFactor: 2.5,
+              )
+            ],
+          )
+        :
+        listView(),
       ),
     );
   }
